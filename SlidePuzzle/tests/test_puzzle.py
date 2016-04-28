@@ -9,5 +9,5 @@ class PuzzleTest(unittest.TestCase):
 
 def all_tests():
     return unittest.TestSuite([
-        PuzzleTest(),
+        unittest.TestLoader().loadTestsFromTestCase(PuzzleTest),
     ])
