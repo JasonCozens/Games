@@ -31,3 +31,6 @@ class SlidePuzzle:
         zero = [key for key, value in self._board.items() if value == 0][0]
         (zx, zy) = zero
         return xy in {(zx - 1, zy), (zx, zy - 1), (zx + 1, zy), (zx, zy + 1)}
+
+    def move(self, param):
+        pass

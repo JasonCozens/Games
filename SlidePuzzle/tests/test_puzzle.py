@@ -25,6 +25,11 @@ class PuzzleTest(unittest.TestCase):
         self.assertEqual(sp.can_move(7), False)
         self.assertEqual(sp.can_move(8), True)
 
+    def test_locked_tile_can_not_move(self):
+        sp = puzzle.SlidePuzzle()
+        sp.move(1)
+        initial_board = "| 1 | 2 | 3 |\n| 4 | 5 | 6 |\n| 7 | 8 |   |"
+        self.assertEqual(str(sp), initial_board)
 
 def all_tests():
     return unittest.TestSuite([
