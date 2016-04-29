@@ -24,7 +24,8 @@ class SlidePuzzle:
         Direction.Left,
     ]
 
-    def __init__(self):
+    def __init__(self, rand=random):
+        self._choice = rand.choice
         self._board = {}
         for y in range(1, SlidePuzzle.Height + 1):
             for x in range(1, SlidePuzzle.Width + 1):
@@ -78,5 +79,7 @@ class SlidePuzzle:
                 self._board[(zx, zy + 1)] = 0
 
     def shuffle(self, count):
-        pass
+        for _ in range(count):
+            next_move = self._choice(SlidePuzzle.Directions)
+            self.move_space(next_move)
 

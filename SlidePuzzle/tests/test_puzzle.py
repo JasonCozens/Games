@@ -4,6 +4,16 @@ from SlidePuzzle import puzzle
 from SlidePuzzle.puzzle import Direction
 
 
+class MockRandom:
+
+    def __init__(self, choices=[]):
+        self._choices = choices
+        self._choices.reverse()
+
+    def choice(self, sequence):
+        return self._choices.pop()
+
+
 class PuzzleTest(unittest.TestCase):
 
     def test_12_bars(self):
@@ -75,6 +85,12 @@ class PuzzleTest(unittest.TestCase):
         board = str(sp)
         sp.shuffle(0)
         self.assertEqual(str(sp), board)
+
+    def test_shuffle_up(self):
+        sp = puzzle.SlidePuzzle(MockRandom([Direction.Up]))
+        sp.shuffle(1)
+        new_board = "| 1 | 2 | 3 |\n| 4 | 5 |   |\n| 7 | 8 | 6 |"
+        self.assertEqual(str(sp), new_board)
 
 
 def all_tests():
