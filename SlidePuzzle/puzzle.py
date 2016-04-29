@@ -23,6 +23,12 @@ class SlidePuzzle:
         Direction.Down,
         Direction.Left,
     ]
+    Opposite = {
+        Direction.Up: Direction.Down,
+        Direction.Down: Direction.Up,
+        Direction.Left: Direction.Right,
+        Direction.Right: Direction.Left,
+    }
 
     def __init__(self, rand=random):
         self._choice = rand.choice
@@ -79,7 +85,22 @@ class SlidePuzzle:
                 self._board[(zx, zy + 1)] = 0
 
     def shuffle(self, count):
+        last_move = None
         for _ in range(count):
             next_move = self._choice(SlidePuzzle.Directions)
-            self.move_space(next_move)
+            if last_move is None:
+                self.move_space(next_move)
+                last_move = next_move
+            else:
+                while SlidePuzzle.Opposite[next_move] == last_move:
+                    next_move = self._choice(SlidePuzzle.Directions)
+                self.move_space(next_move)
+                last_move = next_move
+
+
+if __name__ == "__main__":
+    sp = SlidePuzzle()
+    for i in range(100):
+        sp.shuffle(40)
+        print(str(sp) + "\n")
 
