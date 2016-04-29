@@ -70,6 +70,13 @@ class PuzzleTest(unittest.TestCase):
         new_board = "| 1 | 2 | 3 |\n| 4 | 5 | 6 |\n| 7 |   | 8 |"
         self.assertEqual(str(sp), new_board)
 
+    def test_shuffle_zero_iterations(self):
+        sp = puzzle.SlidePuzzle()
+        board = str(sp)
+        sp.shuffle(0)
+        self.assertEqual(str(sp), board)
+
+
 def all_tests():
     return unittest.TestSuite([
         unittest.TestLoader().loadTestsFromTestCase(PuzzleTest),

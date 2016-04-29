@@ -1,4 +1,5 @@
 from aenum import Enum
+import random
 
 __author__ = 'Jason Cozens'
 
@@ -16,6 +17,12 @@ class SlidePuzzle:
 
     Width = 3
     Height = 3
+    Directions = [
+        Direction.Up,
+        Direction.Right,
+        Direction.Down,
+        Direction.Left,
+    ]
 
     def __init__(self):
         self._board = {}
@@ -58,7 +65,7 @@ class SlidePuzzle:
                 self._board[(zx, zy)] = self._board[(zx - 1, zy)]
                 self._board[(zx - 1, zy)] = 0
         if direction == Direction.Right:
-            if zy < SlidePuzzle.Width:
+            if zx < SlidePuzzle.Width:
                 self._board[(zx, zy)] = self._board[(zx + 1, zy)]
                 self._board[(zx + 1, zy)] = 0
         if direction == Direction.Up:
@@ -69,3 +76,7 @@ class SlidePuzzle:
             if zy < SlidePuzzle.Height:
                 self._board[(zx, zy)] = self._board[(zx, zy + 1)]
                 self._board[(zx, zy + 1)] = 0
+
+    def shuffle(self, count):
+        pass
+
