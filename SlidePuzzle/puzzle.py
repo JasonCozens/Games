@@ -26,11 +26,15 @@ class SlidePuzzle:
         board = board.rstrip('\n')
         return board
 
-    def can_move(self, param):
-        xy = [key for key, value in self._board.items() if value == param][0]
+    def can_move(self, tile):
+        xy = [key for key, value in self._board.items() if value == tile][0]
         zero = [key for key, value in self._board.items() if value == 0][0]
         (zx, zy) = zero
         return xy in {(zx - 1, zy), (zx, zy - 1), (zx + 1, zy), (zx, zy + 1)}
 
-    def move(self, param):
-        pass
+    def move(self, tile):
+        if self.can_move(tile):
+            xy = [key for key, value in self._board.items() if value == tile][0]
+            zero = [key for key, value in self._board.items() if value == 0][0]
+            self._board[xy] = 0
+            self._board[zero] = tile
