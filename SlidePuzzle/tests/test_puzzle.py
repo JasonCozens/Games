@@ -1,6 +1,7 @@
 import unittest
 import xmlrunner
-from SlidePuzzle  import puzzle
+from SlidePuzzle import puzzle
+from SlidePuzzle.puzzle import Direction
 
 
 class PuzzleTest(unittest.TestCase):
@@ -57,6 +58,17 @@ class PuzzleTest(unittest.TestCase):
         initial_board = "| 1 | 2 | 3 |\n| 4 | 5 | 6 |\n| 7 | 8 |   |"
         self.assertEqual(str(sp), initial_board)
 
+    def test_move_space_up(self):
+        sp = puzzle.SlidePuzzle()
+        sp.move_space(Direction.Up)
+        new_board = "| 1 | 2 | 3 |\n| 4 | 5 |   |\n| 7 | 8 | 6 |"
+        self.assertEqual(str(sp), new_board)
+
+    def test_move_space_left(self):
+        sp = puzzle.SlidePuzzle()
+        sp.move_space(Direction.Left)
+        new_board = "| 1 | 2 | 3 |\n| 4 | 5 | 6 |\n| 7 |   | 8 |"
+        self.assertEqual(str(sp), new_board)
 
 def all_tests():
     return unittest.TestSuite([
