@@ -43,6 +43,21 @@ class PuzzleTest(unittest.TestCase):
         new_board = "| 1 | 2 | 3 |\n| 4 | 5 |   |\n| 7 | 8 | 6 |"
         self.assertEqual(str(sp), new_board)
 
+    def test_move_right_move_left(self):
+        sp = puzzle.SlidePuzzle()
+        sp.move(8)
+        sp.move(8)
+        initial_board = "| 1 | 2 | 3 |\n| 4 | 5 | 6 |\n| 7 | 8 |   |"
+        self.assertEqual(str(sp), initial_board)
+
+    def test_move_down_move_up(self):
+        sp = puzzle.SlidePuzzle()
+        sp.move(6)
+        sp.move(6)
+        initial_board = "| 1 | 2 | 3 |\n| 4 | 5 | 6 |\n| 7 | 8 |   |"
+        self.assertEqual(str(sp), initial_board)
+
+
 def all_tests():
     return unittest.TestSuite([
         unittest.TestLoader().loadTestsFromTestCase(PuzzleTest),
