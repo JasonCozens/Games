@@ -92,6 +92,25 @@ class PuzzleTest(unittest.TestCase):
         new_board = "| 1 | 2 | 3 |\n| 4 | 5 |   |\n| 7 | 8 | 6 |"
         self.assertEqual(str(sp), new_board)
 
+    def test_shuffle_left(self):
+        sp = puzzle.SlidePuzzle(MockRandom([Direction.Left]))
+        sp.shuffle(1)
+        new_board = "| 1 | 2 | 3 |\n| 4 | 5 | 6 |\n| 7 |   | 8 |"
+        self.assertEqual(str(sp), new_board)
+
+    def test_shuffle_up_down_left(self):
+        sp = puzzle.SlidePuzzle(MockRandom([
+            Direction.Up,
+            Direction.Down,
+            Direction.Left,
+        ]))
+        sp.shuffle(2)
+        new_board =\
+            "| 1 | 2 | 3 |\n" \
+            "| 4 |   | 5 |\n" \
+            "| 7 | 8 | 6 |"
+        self.assertEqual(new_board, str(sp))
+
 
 def all_tests():
     return unittest.TestSuite([
